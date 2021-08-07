@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <ns0:BSIMInputFile xmlns:ns0="http://www.ericsson.se/BsimXMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ericsson.se/BsimXMLSchema BsimXMLSchema.xsd">
     <Batch batchName="UMPIC82_IPSEC">
         <NodeTemplate templateName="AddWcdmaPicoExample_16BAndAbove">

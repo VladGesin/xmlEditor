@@ -12,4 +12,4 @@ def createBCF(data):
         for val in value:
             neighbor.set('value', neighbor.attrib['value'].replace(val[0], str(data[val[0].replace("%", "")][0])))
 
-    tree.write("./excelFiles/BCF_TEMPLATE_new.xml")
+    tree.write('./excelFiles/BCF_TEMPLATE_new.xml', xml_declaration=True, encoding='utf-8')

@@ -1,49 +1,50 @@
-<ns0:BSIMInputFile xmlns:ns0="http://www.ericsson.se/BsimXMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ericsson.se/BsimXMLSchema BsimXMLSchema.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:BSIMInputFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ericsson.se/BsimXMLSchema BsimXMLSchema.xsd" xmlns:tns="http://www.ericsson.se/BsimXMLSchema">
     <Batch batchName="%SITE%_IPSEC">
         <NodeTemplate templateName="AddWcdmaPicoExample_16BAndAbove">
-            <SubstitutionAttribute name="autoIntegration" value="1" />
-            <SubstitutionAttribute name="Group Name" value="SubNetwork=ONRM_ROOT_MO,SubNetwork=%RNC%,Group=%RNC%" />
-            <SubstitutionAttribute name="RNC Name" value="%RNC%" />
-            <SubstitutionAttribute name="Node Name" value="%SITE%" />
-            <SubstitutionAttribute name="Node Version" value="17B" />
-            <SubstitutionAttribute name="IP Address" value="%OAM_IP%" />
-            <SubstitutionAttribute name="ftpSwStore" value="SubNetwork=ONRM_ROOT_MO,FtpServer=SMRSMASTERWRAN-oss1,FtpService=smo-swstore-oss1" />
-            <SubstitutionAttribute name="ftpAutoIntegration" value="SubNetwork=ONRM_ROOT_MO,FtpServer=SMRSSLAVE-WRAN-jslmneds,FtpService=wrancore" />
-            <SubstitutionAttribute name="Associated RNC" value="SubNetwork=ONRM_ROOT_MO_R,SubNetwork=%RNC%,MeContext=%RNC%,ManagedElement=1,RncFunction=1" />
-            <SubstitutionAttribute name="Site" value="PICO" />
+            <SubstitutionAttribute name="autoIntegration" value="1"/>
+            <SubstitutionAttribute name="Group Name" value="SubNetwork=ONRM_ROOT_MO,SubNetwork=%RNC%,Group=%RNC%"/>
+            <SubstitutionAttribute name="RNC Name" value="%RNC%"/>
+            <SubstitutionAttribute name="Node Name" value="%SITE%"/>
+            <SubstitutionAttribute name="Node Version" value="17B"/>
+            <SubstitutionAttribute name="IP Address" value="%OAM_IP%"/>
+            <SubstitutionAttribute name="ftpSwStore" value="SubNetwork=ONRM_ROOT_MO,FtpServer=SMRSMASTERWRAN-oss1,FtpService=smo-swstore-oss1"/>
+            <SubstitutionAttribute name="ftpAutoIntegration" value="SubNetwork=ONRM_ROOT_MO,FtpServer=SMRSSLAVE-WRAN-jslmneds,FtpService=wrancore"/>
+            <SubstitutionAttribute name="Associated RNC" value="SubNetwork=ONRM_ROOT_MO_R,SubNetwork=%RNC%,MeContext=%RNC%,ManagedElement=1,RncFunction=1"/>
+            <SubstitutionAttribute name="Site" value="PICO"/>
         </NodeTemplate>
         <TransportTemplate templateName="WcdmaRNCTNBulkCMExample">
-            <SubstitutionAttribute name="RNC Name" value="%RNC%" />
-            <SubstitutionAttribute name="Node Name" value="%SITE%" />
-            <SubstitutionAttribute name="IUB ID" value="Iub_%SITE%" />
-            <SubstitutionAttribute name="rbsId" value="%RBSID%" />
-            <SubstitutionAttribute name="IpAccessHostPool" value="IUB" />
+            <SubstitutionAttribute name="RNC Name" value="%RNC%"/>
+            <SubstitutionAttribute name="Node Name" value="%SITE%"/>
+            <SubstitutionAttribute name="IUB ID" value="Iub_%SITE%"/>
+            <SubstitutionAttribute name="rbsId" value="%RBSID%"/>
+            <SubstitutionAttribute name="IpAccessHostPool" value="IUB"/>
         </TransportTemplate>
         <RadioTemplate templateName="1CellWcdmaRNBulkCMExample">
-            <SubstitutionAttribute name="RNC Name" value="%RNC%" />
-            <SubstitutionAttribute name="Node Name" value="%SITE%" />
-            <SubstitutionAttribute name="Cell 1: localCellId" value="%RBSID%1" />
-            <SubstitutionAttribute name="Cell 1: uarfcnUl" value="9612" />
-            <SubstitutionAttribute name="Cell 1: uarfcnDl" value="10562" />
-            <SubstitutionAttribute name="Cell 1: primaryScramblingCode" value="%PSC%" />
-            <SubstitutionAttribute name="Cell 1: cId" value="%RBSID%1" />
-            <SubstitutionAttribute name="Cell 1: User Label" value="%SITE%A1" />
-            <SubstitutionAttribute name="Cell 1: lac" value="%LAC%" />
-            <SubstitutionAttribute name="Cell 1: sac" value="%RBSID%1" />
-            <SubstitutionAttribute name="IUB ID" value="Iub_%SITE%" />
-            <SubstitutionAttribute name="Cell 1: tCell" value="0" />
-            <SubstitutionAttribute name="Cell 1: sib1PlmnScopeValueTag" value="%SIB1%" />
+            <SubstitutionAttribute name="RNC Name" value="%RNC%"/>
+            <SubstitutionAttribute name="Node Name" value="%SITE%"/>
+            <SubstitutionAttribute name="Cell 1: localCellId" value="%RBSID%1"/>
+            <SubstitutionAttribute name="Cell 1: uarfcnUl" value="9612"/>
+            <SubstitutionAttribute name="Cell 1: uarfcnDl" value="10562"/>
+            <SubstitutionAttribute name="Cell 1: primaryScramblingCode" value="%PSC%"/>
+            <SubstitutionAttribute name="Cell 1: cId" value="%RBSID%1"/>
+            <SubstitutionAttribute name="Cell 1: User Label" value="%SITE%A1"/>
+            <SubstitutionAttribute name="Cell 1: lac" value="%LAC%"/>
+            <SubstitutionAttribute name="Cell 1: sac" value="%RBSID%1"/>
+            <SubstitutionAttribute name="IUB ID" value="Iub_%SITE%"/>
+            <SubstitutionAttribute name="Cell 1: tCell" value="0"/>
+            <SubstitutionAttribute name="Cell 1: sib1PlmnScopeValueTag" value="%SIB1%"/>
         </RadioTemplate>
         <BatchRbsAutoIntegrate unLockCells="true" upgradePackageName="CXP9028777/1_R1AH01">
             <batchIcfTemplate templateName="WRANInitialConfigurationFileExample_IPSEC_16B">
-                <SubstitutionAttribute name="Save as" value="" />
-                <SubstitutionAttribute name="Node Name" value="%SITE%" />
+                <SubstitutionAttribute name="Save as" value=""/>
+                <SubstitutionAttribute name="Node Name" value="%SITE%"/>
             </batchIcfTemplate>
         </BatchRbsAutoIntegrate>
-        <nodeType value="Pico" />
-        <domain value="WRAN" />
-        <batchSize value="1" />
-        <plannedConfiguration automatic="true" />
-        <domainSpecific />
+        <nodeType value="Pico"/>
+        <domain value="WRAN"/>
+        <batchSize value="1"/>
+        <plannedConfiguration automatic="true"/>
+        <domainSpecific/>
     </Batch>
-</ns0:BSIMInputFile>
+</tns:BSIMInputFile>
