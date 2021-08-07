@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+DocumentNumber = '1/006 91-CXP 902 8777/1, rev PC1'
+
+File    : MSRBS_V1 ICF Template MSMM IPSEC.xml
+Purpose : MSMM Initial Configuration File Template for MSRBS_V1, IPSEC deployment
+
+Modified: September 9 2016
+--><!-- Common part starts --><rpc message-id="1" xsi:schemaLocation="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <edit-config>
+                <target>
+                        <running/>
+                </target>
+                <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                        <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+                                <managedElementId>1</managedElementId>
+                                <dnPrefix>SubNetwork=ONRM_Root_Mo_R,SubNetwork=ERNC1,MeContext=%SITE%</dnPrefix>
+                                <networkManagedElementId>%SITE%</networkManagedElementId>
+                                <SystemFunctions xmlns="urn:com:ericsson:ecim:ComTop">
+                                        <systemFunctionsId>1</systemFunctionsId>
+                                        <SecM xmlns="urn:com:ericsson:ecim:ComSecM">
+                                                <secMId>1</secMId>
+                                                <UserManagement xmlns="urn:com:ericsson:ecim:ComSecM">
+                                                <userManagementId>1</userManagementId>
+                                                <LdapAuthenticationMethod xmlns="urn:com:ericsson:ecim:ComLdapAuthentication">
+                                                        <ldapAuthenticationMethodId>1</ldapAuthenticationMethodId>
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <Ldap xmlns="urn:com:ericsson:ecim:ComLdapAuthentication">
+                                                                <ldapId>1</ldapId>
+                                                                <ldapIpAddress>10.200.73.7</ldapIpAddress>
+                                                                <baseDn>dc=jslimldap,dc=jawwal,dc=ps</baseDn>
+                                                                <bindDn>cn=comproxy,ou=proxyagent,ou=com,dc=jslimldap,dc=jawwal,dc=ps</bindDn>
+                                                                <bindPassword struct="EcimPassword">
+                                                                <cleartext/>
+                                                                <password>comproxyldap</password>
+                                                                </bindPassword>
+                                                                <tlsMode>STARTTLS</tlsMode>
+                                                                <useReferrals>false</useReferrals>
+                                                        </Ldap>
+                                                </LdapAuthenticationMethod>
+                                                </UserManagement>
+                                                <CertM xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                        <certMId>1</certMId>    
+                                                        <NodeCredential xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <nodeCredentialId>1</nodeCredentialId>
+                                                                <subjectName>C=IL,O=Ericsson</subjectName><!-- Operator domain part for subject of certificate to be enrolled -->
+                                                                <enrollmentServerGroup>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentServerGroup=1</enrollmentServerGroup>
+                                                                <renewalMode>AUTOMATIC</renewalMode>
+                                                                <userLabel>TLS</userLabel>
+                                                        </NodeCredential>
+                                                        <NodeCredential xc:operation="create" xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <nodeCredentialId>2</nodeCredentialId>
+                                                                <subjectName>C=IL,O=Ericsson</subjectName><!--Operator domain part for subject of certificate to be enrolled -->
+                                                                <enrollmentServerGroup>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentServerGroup=2</enrollmentServerGroup>
+                                                                <renewalMode>AUTOMATIC</renewalMode>
+                                                                <userLabel>IPsec</userLabel>
+                                                        </NodeCredential>
+                                                        <EnrollmentAuthority xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <enrollmentAuthorityId>1</enrollmentAuthorityId>
+                                                                <authorityType>REGISTRATION_AUTHORITY</authorityType>
+                                                                <enrollmentAuthorityName>O=Ericsson,OU=ericssonOAM,CN=masterservicesNECertCA</enrollmentAuthorityName> 
+                                                        </EnrollmentAuthority>
+                                                        <EnrollmentAuthority xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <enrollmentAuthorityId>2</enrollmentAuthorityId>
+                                                                <authorityType>REGISTRATION_AUTHORITY</authorityType>
+                                                                <enrollmentAuthorityName>O=Ericsson,CN=LTEIPSecNEcusRootCA</enrollmentAuthorityName>
+                                                        </EnrollmentAuthority>
+                                                        <EnrollmentServerGroup xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <enrollmentServerGroupId>1</enrollmentServerGroupId>
+                                                                <EnrollmentServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                        <enrollmentServerId>1</enrollmentServerId>
+                                                                        <protocol>CMP</protocol>
+                                                                        <enrollmentAuthority>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentAuthority=1</enrollmentAuthority>
+                                                                        <uri>http://10.200.73.7:26772/cmp</uri>
+                                                                </EnrollmentServer>
+                                                        </EnrollmentServerGroup>
+                                                        <EnrollmentServerGroup xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                <enrollmentServerGroupId>2</enrollmentServerGroupId>
+                                                                <EnrollmentServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_CertM">
+                                                                        <enrollmentServerId>1</enrollmentServerId>
+                                                                        <protocol>CMP</protocol>
+                                                                        <enrollmentAuthority>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentAuthority=2</enrollmentAuthority>
+                                                                        <uri>http://10.200.73.7:26772/cmp</uri>
+                                                                </EnrollmentServer>
+                                                        </EnrollmentServerGroup>
+														<!--NetconfTls>
+                                                                <netconfTlsId>1</netconfTlsId>
+                                                                <nodeCredential>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,NodeCredential=1</nodeCredential>
+                                                                <trustCategory>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,TrustCategory=1</trustCategory>
+                                                                <administrativeState>UNLOCKED</administrativeState>
+                                                        </NetconfTls-->
+                                                </CertM>
+                                        </SecM>
+                                        <SysM xmlns="urn:com:ericsson:ecim:ComSysM">
+                                                <sysMId>1</sysMId>
+                                                <Snmp xmlns="urn:com:ericsson:ecim:ComSnmp">
+                                                        <snmpId>1</snmpId>
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <agentAddress struct="HostAndPort">
+                                                                <host>0.0.0.0</host>
+                                                                <port>161</port>
+                                                        </agentAddress>
+														<SnmpTargetV2C>
+															<snmpTargetV2CId>1</snmpTargetV2CId>
+															<community>public</community>
+															<address>10.200.73.5</address>
+															<port>162</port>
+															<administrativeState>UNLOCKED</administrativeState>
+														</SnmpTargetV2C>
+                                                </Snmp>
+                                                <NtpServer xmlns="urn:com:ericsson:ecim:ComSysM">
+                                                        <ntpServerId>1</ntpServerId>
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <serverAddress>10.200.73.7</serverAddress>
+                                                </NtpServer>
+                                                <NtpServer xmlns="urn:com:ericsson:ecim:ComSysM">
+                                                        <ntpServerId>2</ntpServerId>
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <serverAddress>10.200.34.213</serverAddress>
+                                                </NtpServer>
+                                                <TimeM xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_TimeM">
+                                                        <timeMId>1</timeMId>
+                                                        <DateAndTime xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_TimeM">
+                                                                <dateAndTimeId>1</dateAndTimeId>
+                                                                <timeZone>Asia/Jerulsalem</timeZone>
+                                                        </DateAndTime>
+                                                </TimeM>
+                                        </SysM>
+                                        <SwM xmlns="urn:com:ericsson:ecim:MSRBS_V1_SwM">
+                                                <swMId>1</swMId>
+                                                <createUpgradePackage>
+                                                        <uri>sftp://coreftp@10.200.73.7://CORE/CommonPersistent/Software/0gI0NhqHYTIFqDnl99-vD1qdTxs</uri>
+                                                        <password>ftp123</password>
+                                                </createUpgradePackage>
+                                        </SwM>
+                                </SystemFunctions>
+                               <Equipment xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_Equipment">
+                                        <equipmentId>1</equipmentId>
+                                        <RbsUnit xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_Equipment_RbsUnit">
+                                                <rbsUnitId>1</rbsUnitId>
+                                                <antennaMapping>AUTOMATIC</antennaMapping>
+                                                <WifiModule xmlns="urn:com:ericsson:ecim:Equipment_RbsUnit" xc:operation="merge">
+                                                        <wifiModuleId>1</wifiModuleId>
+                                                        <administrativeState>LOCKED</administrativeState>
+                                                </WifiModule>
+                                        </RbsUnit>
+                                </Equipment>
+<!-- Common part ends -->
+<!-- Transport and synchronization part starts -->      
+                                <Transport xmlns="urn:com:ericsson:ecim:ComTop">
+                                        <transportId>1</transportId>
+                                        <!--VlanPort xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_VlanPort">
+                                                <vlanPortId>1</vlanPortId>
+                                                <vlanId>1004</vlanId>
+                                                <userLabel>OAM Vlan interface.</userLabel>
+                                        </VlanPort>
+                                        <VlanPort xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_VlanPort">
+                                                <vlanPortId>2</vlanPortId>
+                                                <vlanId>204</vlanId>
+                                                <userLabel>Traffic Vlan interface.</userLabel>
+                                        </VlanPort-->
+                                        <Host xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L3_Host">
+                                                <hostId>3</hostId>
+                                                <!-- Only IPv4 supported for SEG -->
+                                                <PeerIPv4 xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_Routes_PeerIPv4">
+                                                        <address>213.244.122.248</address>
+                                                        <peerIPv4Id>1</peerIPv4Id>
+                                                </PeerIPv4>
+                                                <!-- To have one SEG configuration remove SEG 2 configuration. -->
+                                                <!-- SEG 2 configuration starts -->
+                                                <PeerIPv4 xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_Routes_PeerIPv4">
+                                                        <address>213.244.122.249</address>
+                                                        <peerIPv4Id>2</peerIPv4Id>
+                                                </PeerIPv4>
+                                                <!-- SEG 2 configuration ends -->
+                                                <IpsecTunnel xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_IPsec_Tunnel">
+                                                        <ipsecTunnelId>1</ipsecTunnelId>
+                                                        <IpsecPolicy>
+                                                                <ipsecPolicyId>1</ipsecPolicyId>
+                                                                <localTrafficSelector struct="TrafficSelector">
+                                                                        <addressRange>10.112.64.128/25</addressRange>
+                                                                </localTrafficSelector>
+                                                                <remoteTrafficSelector struct="TrafficSelector">
+                                                                        <addressRange>10.200.73.0/24</addressRange>
+                                                                </remoteTrafficSelector>
+                                                        </IpsecPolicy>
+                                                </IpsecTunnel>
+                                                <!--IpsecPolicy comment ends-->
+                                                <!--To add local and/or remote traffic selector to S1/X2 traffic tunnel remove the IpsecPolicy tags -->
+                                                <!--AddressRange must be updated operator value; example 1.2.3.4/5 (IPv4 address/prefix length) -->
+                                                <!--IpsecPolicy comment starts-->
+                                                <IpsecTunnel xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_IPsec_Tunnel">
+                                                        <ipsecTunnelId>2</ipsecTunnelId>
+                                                        <IpsecPolicy>
+                                                                <ipsecPolicyId>2</ipsecPolicyId>
+                                                                <localTrafficSelector struct="TrafficSelector">
+                                                                        <addressRange>10.112.56.128/25</addressRange>
+                                                                </localTrafficSelector>
+                                                                <remoteTrafficSelector struct="TrafficSelector">
+                                                                        <addressRange>10.200.57.0/24</addressRange>
+                                                                </remoteTrafficSelector>
+                                                        </IpsecPolicy>
+                                                </IpsecTunnel>
+                                        </Host>
+                                        <Host xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L3_Host">
+                                        <hostId>1</hostId>
+                                        <DnsClient>
+                                                <serverAddress>10.200.73.7</serverAddress>
+                                                <dnsClientId>1</dnsClientId>
+                                        </DnsClient>
+                                        <InterfaceIPv4>
+                                                <interfaceIPv4Id>1</interfaceIPv4Id>
+                                                <AddressIPv4>
+                                                        <addressIPv4Id>1</addressIPv4Id>
+                                                        <address>%OAM_IP%/25</address>
+                                                </AddressIPv4>
+                                        </InterfaceIPv4>
+                                        </Host>
+                                        <Host xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L3_Host">
+                                        <!--traffic host -->
+                                        <hostId>2</hostId>
+                                        <InterfaceIPv4>
+                                        <interfaceIPv4Id>2</interfaceIPv4Id>
+                                                <AddressIPv4>
+                                                        <addressIPv4Id>2</addressIPv4Id>
+                                                        <address>%IUB_IP%/25</address>
+                                                </AddressIPv4>
+                                        </InterfaceIPv4>
+                                        </Host>
+                                        <Synchronization xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_Synchronization">
+                                                <synchronizationId>1</synchronizationId>
+                                                <syncServerNetwork>PRIVATE</syncServerNetwork><!--Inner traffic IP; update to PUBLIC if Sync servers accessed through Outer IP -->
+                                                <SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <syncServerId>1</syncServerId>
+                                                        <!-- Alternatives for bindInterfaceRef 
+                                                        Traffic 1 inner IP:     ManagedElement=1,Transport=1,Host=2
+                                                        Traffic 2 inner IP:     ManagedElement=1,Transport=1,Host=4
+                                                        OAM inner IP:           ManagedElement=1,Transport=1,Host=1
+                                                        Public IP:              ManagedElement=1,Transport=1,Host=3
+                                                        For OAM only configuration use only  BindInterfaceRef to Host=3 or remove SyncServer=1 and SyncServer=2 definitions.
+                                                        -->
+                                                        <bindInterfaceRef>ManagedElement=1,Transport=1,Host=2</bindInterfaceRef>
+                                                        <serverAddress>10.200.57.6</serverAddress>
+                                                        <protocol>NTP</protocol><!--Update to PTP if PTP over IP is used -->
+                                                        <!-- <domainNumber>0</domainNumber> --><!--Remove comment and assign domain number if PTP over IP is used -->
+                                                </SyncServer>
+                                                <SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <syncServerId>2</syncServerId>
+                                                        <bindInterfaceRef>ManagedElement=1,Transport=1,Host=2</bindInterfaceRef>
+                                                        <serverAddress>10.200.57.44</serverAddress>
+                                                        <protocol>NTP</protocol><!--Update to PTP if PTP over IP is used -->
+                                                        <!-- <domainNumber>0</domainNumber> --><!--Remove comment and assign domain number if PTP over IP is used -->
+                                                </SyncServer>
+                                                <!-- To configure PTP over Ethernet for the phase synchronization source remove the PTP over Ethernet tags. -->
+                                                <!--SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <syncServerId>3</syncServerId>
+                                                        <protocol>PTP</protocol>
+                                                </SyncServer-->
+                                        </Synchronization>
+                                        <EthernetPort xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_EthernetPort">
+                                                <ethernetPortId>1</ethernetPortId>
+                                                <!--mtu>1500</mtu-->
+                                                <TrafficScheduler xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_TrafficScheduler">
+                                                        <trafficSchedulerId>1</trafficSchedulerId>
+                                                        <trafficShapingProfile>PROFILE1</trafficShapingProfile>
+                                                </TrafficScheduler>
+                                        </EthernetPort>
+                                        <!-- SctpProfile definitions for WCDMA; must be removed if WCDMA is not configured. -->
+                                        <!--SctpProfile xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SCTP_SctpProfile">
+                                                <alphaIndex>ALPHA_INDEX3</alphaIndex>
+                                                <assocMaxRtx>12</assocMaxRtx>
+                                                <betaIndex>BETA_INDEX2</betaIndex>
+                                                <cookieLife>60</cookieLife>
+                                                <dscp>40</dscp>
+                                                <heartbeatActivated>true</heartbeatActivated>
+                                                <heartbeatInterval>2000</heartbeatInterval>
+                                                <initARWnd>16384</initARWnd>
+                                                <initRto>200</initRto>
+                                                <maxBurst>4</maxBurst>
+                                                <maxInitRt>8</maxInitRt>
+                                                <maxInStreams>2</maxInStreams>
+                                                <maxOutStreams>2</maxOutStreams>
+                                                <maxRto>400</maxRto>
+                                                <maxSctpPduSize>556</maxSctpPduSize>
+                                                <minRto>100</minRto>
+                                                <pathMaxRtx>10</pathMaxRtx>
+                                                <sackTimer>40</sackTimer>
+                                                <sctpProfileId>2</sctpProfileId>
+                                                <transmitBufferSize>16</transmitBufferSize>
+                                        </SctpProfile-->
+                                </Transport>
+<!-- Transport and synchronization part ends -->
+<!-- WCDMA part starts -->
+<!-- To have OAM only or LTE only configuration remove WCDMA configuration. -->
+                                <NodeBFunction xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction">
+                                        <desensitizationPower>0</desensitizationPower>
+                                        <eulDchMaxAllowedSchRate>1600</eulDchMaxAllowedSchRate>
+                                        <eulMaxAllowedSchRate>3968</eulMaxAllowedSchRate>
+                                        <featureStatus64Qam>true</featureStatus64Qam>
+                                        <featureStatusDynamicCodeAllocation>true</featureStatusDynamicCodeAllocation>
+                                        <featureStatusEnhancedLayer2>false</featureStatusEnhancedLayer2>
+                                        <featureStatusEul2msTti>false</featureStatusEul2msTti>
+                                        <featureStatusFDpchSrbOnHsdpa>false</featureStatusFDpchSrbOnHsdpa>
+                                        <featureStatusHsAqmCongCtrl>true</featureStatusHsAqmCongCtrl> <!-- false not supported -->
+                                        <hsPowerMargin>0</hsPowerMargin>
+                                        <nodeBFunctionId>1</nodeBFunctionId>
+                                        <orthLossComp>4</orthLossComp>
+                                        <Iub xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction">
+                                                <iubId>%RBSID%</iubId>
+                                                <rbsId>%RBSID%</rbsId>
+                                                <!-- Alternatives for Iub::trafficIpAddress
+                                                ManagedElement=1,Transport=1,Host=2,InterfaceIPv4=2,AddressIPv4=2
+                                                ManagedElement=1,Transport=1,Host=4,InterfaceIPv4=4,AddressIPv4=4
+                                                ManagedElement=1,Transport=1,Host=1,InterfaceIPv4=1,AddressIPv4=1
+                                                -->
+                                                <trafficIpAddress>ManagedElement=1,Transport=1,Host=2,InterfaceIPv4=2,AddressIPv4=2</trafficIpAddress>
+                                                <IubDataStreams xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction">
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>ON</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>ON</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>ON</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>ON</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>ON</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <hsAqmCongCtrlSpiOnOff>OFF</hsAqmCongCtrlSpiOnOff>
+                                                        <iubDataStreamsId>1</iubDataStreamsId>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>ON</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>ON</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>ON</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>ON</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>ON</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                        <schHsFlowControlOnOff>OFF</schHsFlowControlOnOff>
+                                                </IubDataStreams>       
+                                        </Iub>
+                                        <NodeBLocalCellGroup xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction">
+                                                <nodeBLocalCellGroupId>1</nodeBLocalCellGroupId>
+                                                <NodeBLocalCell xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction">
+                                                        <administrativeState>UNLOCKED</administrativeState>
+                                                        <eAgchMaxPower>-140</eAgchMaxPower>
+                                                        <eAgchMaxPower2msTti>-80</eAgchMaxPower2msTti>
+                                                        <eAgchMinPower>-140</eAgchMinPower>
+                                                        <eAgchMinPower2msTti>-80</eAgchMinPower2msTti>
+                                                        <eHichMaxPower>-140</eHichMaxPower>
+                                                        <eHichMaxPower2msTti>-80</eHichMaxPower2msTti>
+                                                        <eHichMinPower>-140</eHichMinPower>
+                                                        <eHichMinPower2msTti>-80</eHichMinPower2msTti>
+                                                        <eRgchMaxPower>-140</eRgchMaxPower>
+                                                        <eRgchMinPower>-140</eRgchMinPower>
+                                                        <eulMaxOwnUuLoad>100</eulMaxOwnUuLoad>
+                                                        <eulMaxRoTCoverage>200</eulMaxRoTCoverage>
+                                                        <eulOptimalNoiseFloorLock struct="EulOptimalNoiseFloorLockDataStruct">
+                                                                <eulNoiseFloorLock>false</eulNoiseFloorLock>
+                                                                <eulOptimalNoiseFloorEstimate>-1000</eulOptimalNoiseFloorEstimate>
+                                                        </eulOptimalNoiseFloorLock>
+                                                        <hsScchMaxCodePower>-20</hsScchMaxCodePower>
+                                                        <hsScchMinCodePower>-20</hsScchMinCodePower>
+                                                        <localCellId>%RBSID%1</localCellId>
+                                                        <nodeBLocalCellId>%SITE%A1</nodeBLocalCellId>
+                                                        <numOfTxAntennas>1</numOfTxAntennas>
+                                                        <numOfRxAntennas>2</numOfRxAntennas>
+                                                        <operatingBand>1</operatingBand><!--Must be updated with operator value-->
+                                                        <uarfcnDl>10562</uarfcnDl><!--Must be updated with operator value-->
+                                                        <!--Remove SectorRef tags and assign value if antennaMapping is set as MANUAL-->
+                                                        <!-- SectorRef configuration starts
+                                                        <sectorFunctionRef>ManagedElement=1,NodeFunction=1,SectorEquipmentFunction=2</sectorFunctionRef>
+                                                        SectorRef configuration ends -->
+                                                </NodeBLocalCell>
+                                        </NodeBLocalCellGroup>  
+                                </NodeBFunction>
+<!-- WCDMA part ends-->                         
+                        </ManagedElement>
+                </config>
+        </edit-config>
+</rpc>

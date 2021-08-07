@@ -1,0 +1,2 @@
+<ns0:BSIMInputFile xmlns:ns0="http://www.ericsson.se/BsimXMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ericsson.se/BsimXMLSchema BsimXMLSchema.xsd">
+    <Batch batchName="%SITE%_IPSEC"
