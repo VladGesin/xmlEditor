@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:rpc xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:ns10="urn:com:ericsson:ecim:MSRBS_V1_Equipment" xmlns:ns11="urn:com:ericsson:ecim:MSRBS_V1_Equipment_RbsUnit" xmlns:ns12="urn:com:ericsson:ecim:Equipment_RbsUnit" xmlns:ns13="urn:com:ericsson:ecim:MSRBS_V1_T_L3_Host" xmlns:ns14="urn:com:ericsson:ecim:MSRBS_V1_T_Routes_PeerIPv4" xmlns:ns15="urn:com:ericsson:ecim:MSRBS_V1_T_IPsec_Tunnel" xmlns:ns16="urn:com:ericsson:ecim:MSRBS_V1_T_Synchronization" xmlns:ns17="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer" xmlns:ns18="urn:com:ericsson:ecim:MSRBS_V1_T_L2_EthernetPort" xmlns:ns19="urn:com:ericsson:ecim:MSRBS_V1_T_TrafficScheduler" xmlns:ns2="urn:com:ericsson:ecim:ComTop" xmlns:ns20="urn:com:ericsson:ecim:MSRBS_V1_NodeBFunction" xmlns:ns3="urn:com:ericsson:ecim:ComSecM" xmlns:ns4="urn:com:ericsson:ecim:ComLdapAuthentication" xmlns:ns5="urn:com:ericsson:ecim:MSRBS_V1_CertM" xmlns:ns6="urn:com:ericsson:ecim:ComSysM" xmlns:ns7="urn:com:ericsson:ecim:ComSnmp" xmlns:ns8="urn:com:ericsson:ecim:MSRBS_V1_TimeM" xmlns:ns9="urn:com:ericsson:ecim:MSRBS_V1_SwM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" message-id="1" xsi:schemaLocation="urn:ietf:params:xml:ns:netconf:base:1.0">
+        <ns0:edit-config>
+                <ns0:target>
+                        <ns0:running />
+                </ns0:target>
+                <ns0:config>
+                        <ns2:ManagedElement>
+                                <ns2:managedElementId>1</ns2:managedElementId>
+                                <ns2:dnPrefix>SubNetwork=ONRM_Root_Mo_R,SubNetwork=ERNC2,MeContext=UMPIC82</ns2:dnPrefix>
+                                <ns2:networkManagedElementId>UMPIC82</ns2:networkManagedElementId>
+                                <ns2:SystemFunctions>
+                                        <ns2:systemFunctionsId>1</ns2:systemFunctionsId>
+                                        <ns3:SecM>
+                                                <ns3:secMId>1</ns3:secMId>
+                                                <ns3:UserManagement>
+                                                <ns3:userManagementId>1</ns3:userManagementId>
+                                                <ns4:LdapAuthenticationMethod>
+                                                        <ns4:ldapAuthenticationMethodId>1</ns4:ldapAuthenticationMethodId>
+                                                        <ns4:administrativeState>UNLOCKED</ns4:administrativeState>
+                                                        <ns4:Ldap>
+                                                                <ns4:ldapId>1</ns4:ldapId>
+                                                                <ns4:ldapIpAddress>10.200.73.7</ns4:ldapIpAddress>
+                                                                <ns4:baseDn>dc=jslimldap,dc=jawwal,dc=ps</ns4:baseDn>
+                                                                <ns4:bindDn>cn=comproxy,ou=proxyagent,ou=com,dc=jslimldap,dc=jawwal,dc=ps</ns4:bindDn>
+                                                                <ns4:bindPassword struct="EcimPassword">
+                                                                <ns4:cleartext />
+                                                                <ns4:password>comproxyldap</ns4:password>
+                                                                </ns4:bindPassword>
+                                                                <ns4:tlsMode>STARTTLS</ns4:tlsMode>
+                                                                <ns4:useReferrals>false</ns4:useReferrals>
+                                                        </ns4:Ldap>
+                                                </ns4:LdapAuthenticationMethod>
+                                                </ns3:UserManagement>
+                                                <ns5:CertM>
+                                                        <ns5:certMId>1</ns5:certMId>    
+                                                        <ns5:NodeCredential>
+                                                                <ns5:nodeCredentialId>1</ns5:nodeCredentialId>
+                                                                <ns5:subjectName>C=IL,O=Ericsson</ns5:subjectName>
+                                                                <ns5:enrollmentServerGroup>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentServerGroup=1</ns5:enrollmentServerGroup>
+                                                                <ns5:renewalMode>AUTOMATIC</ns5:renewalMode>
+                                                                <ns5:userLabel>TLS</ns5:userLabel>
+                                                        </ns5:NodeCredential>
+                                                        <ns5:NodeCredential ns0:operation="create">
+                                                                <ns5:nodeCredentialId>2</ns5:nodeCredentialId>
+                                                                <ns5:subjectName>C=IL,O=Ericsson</ns5:subjectName>
+                                                                <ns5:enrollmentServerGroup>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentServerGroup=2</ns5:enrollmentServerGroup>
+                                                                <ns5:renewalMode>AUTOMATIC</ns5:renewalMode>
+                                                                <ns5:userLabel>IPsec</ns5:userLabel>
+                                                        </ns5:NodeCredential>
+                                                        <ns5:EnrollmentAuthority>
+                                                                <ns5:enrollmentAuthorityId>1</ns5:enrollmentAuthorityId>
+                                                                <ns5:authorityType>REGISTRATION_AUTHORITY</ns5:authorityType>
+                                                                <ns5:enrollmentAuthorityName>O=Ericsson,OU=ericssonOAM,CN=masterservicesNECertCA</ns5:enrollmentAuthorityName> 
+                                                        </ns5:EnrollmentAuthority>
+                                                        <ns5:EnrollmentAuthority>
+                                                                <ns5:enrollmentAuthorityId>2</ns5:enrollmentAuthorityId>
+                                                                <ns5:authorityType>REGISTRATION_AUTHORITY</ns5:authorityType>
+                                                                <ns5:enrollmentAuthorityName>O=Ericsson,CN=LTEIPSecNEcusRootCA</ns5:enrollmentAuthorityName>
+                                                        </ns5:EnrollmentAuthority>
+                                                        <ns5:EnrollmentServerGroup>
+                                                                <ns5:enrollmentServerGroupId>1</ns5:enrollmentServerGroupId>
+                                                                <ns5:EnrollmentServer>
+                                                                        <ns5:enrollmentServerId>1</ns5:enrollmentServerId>
+                                                                        <ns5:protocol>CMP</ns5:protocol>
+                                                                        <ns5:enrollmentAuthority>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentAuthority=1</ns5:enrollmentAuthority>
+                                                                        <ns5:uri>http://10.200.73.7:26772/cmp</ns5:uri>
+                                                                </ns5:EnrollmentServer>
+                                                        </ns5:EnrollmentServerGroup>
+                                                        <ns5:EnrollmentServerGroup>
+                                                                <ns5:enrollmentServerGroupId>2</ns5:enrollmentServerGroupId>
+                                                                <ns5:EnrollmentServer>
+                                                                        <ns5:enrollmentServerId>1</ns5:enrollmentServerId>
+                                                                        <ns5:protocol>CMP</ns5:protocol>
+                                                                        <ns5:enrollmentAuthority>ManagedElement=1,SystemFunctions=1,SecM=1,CertM=1,EnrollmentAuthority=2</ns5:enrollmentAuthority>
+                                                                        <ns5:uri>http://10.200.73.7:26772/cmp</ns5:uri>
+                                                                </ns5:EnrollmentServer>
+                                                        </ns5:EnrollmentServerGroup>
+														
+                                                </ns5:CertM>
+                                        </ns3:SecM>
+                                        <ns6:SysM>
+                                                <ns6:sysMId>1</ns6:sysMId>
+                                                <ns7:Snmp>
+                                                        <ns7:snmpId>1</ns7:snmpId>
+                                                        <ns7:administrativeState>UNLOCKED</ns7:administrativeState>
+                                                        <ns7:agentAddress struct="HostAndPort">
+                                                                <ns7:host>0.0.0.0</ns7:host>
+                                                                <ns7:port>161</ns7:port>
+                                                        </ns7:agentAddress>
+														<ns7:SnmpTargetV2C>
+															<ns7:snmpTargetV2CId>1</ns7:snmpTargetV2CId>
+															<ns7:community>public</ns7:community>
+															<ns7:address>10.200.73.5</ns7:address>
+															<ns7:port>162</ns7:port>
+															<ns7:administrativeState>UNLOCKED</ns7:administrativeState>
+														</ns7:SnmpTargetV2C>
+                                                </ns7:Snmp>
+                                                <ns6:NtpServer>
+                                                        <ns6:ntpServerId>1</ns6:ntpServerId>
+                                                        <ns6:administrativeState>UNLOCKED</ns6:administrativeState>
+                                                        <ns6:serverAddress>10.200.73.7</ns6:serverAddress>
+                                                </ns6:NtpServer>
+                                                <ns6:NtpServer>
+                                                        <ns6:ntpServerId>2</ns6:ntpServerId>
+                                                        <ns6:administrativeState>UNLOCKED</ns6:administrativeState>
+                                                        <ns6:serverAddress>10.200.34.213</ns6:serverAddress>
+                                                </ns6:NtpServer>
+                                                <ns8:TimeM ns0:operation="merge">
+                                                        <ns8:timeMId>1</ns8:timeMId>
+                                                        <ns8:DateAndTime ns0:operation="merge">
+                                                                <ns8:dateAndTimeId>1</ns8:dateAndTimeId>
+                                                                <ns8:timeZone>Asia/Jerulsalem</ns8:timeZone>
+                                                        </ns8:DateAndTime>
+                                                </ns8:TimeM>
+                                        </ns6:SysM>
+                                        <ns9:SwM>
+                                                <ns9:swMId>1</ns9:swMId>
+                                                <ns9:createUpgradePackage>
+                                                        <ns9:uri>sftp://coreftp@10.200.73.7://CORE/CommonPersistent/Software/0gI0NhqHYTIFqDnl99-vD1qdTxs</ns9:uri>
+                                                        <ns9:password>ftp123</ns9:password>
+                                                </ns9:createUpgradePackage>
+                                        </ns9:SwM>
+                                </ns2:SystemFunctions>
+                               <ns10:Equipment ns0:operation="merge">
+                                        <ns10:equipmentId>1</ns10:equipmentId>
+                                        <ns11:RbsUnit ns0:operation="merge">
+                                                <ns11:rbsUnitId>1</ns11:rbsUnitId>
+                                                <ns11:antennaMapping>AUTOMATIC</ns11:antennaMapping>
+                                                <ns12:WifiModule ns0:operation="merge">
+                                                        <ns12:wifiModuleId>1</ns12:wifiModuleId>
+                                                        <ns12:administrativeState>LOCKED</ns12:administrativeState>
+                                                </ns12:WifiModule>
+                                        </ns11:RbsUnit>
+                                </ns10:Equipment>
+
+      
+                                <ns2:Transport>
+                                        <ns2:transportId>1</ns2:transportId>
+                                        
+                                        <ns13:Host>
+                                                <ns13:hostId>3</ns13:hostId>
+                                                
+                                                <ns14:PeerIPv4>
+                                                        <ns14:address>213.244.122.248</ns14:address>
+                                                        <ns14:peerIPv4Id>1</ns14:peerIPv4Id>
+                                                </ns14:PeerIPv4>
+                                                
+                                                
+                                                <ns14:PeerIPv4>
+                                                        <ns14:address>213.244.122.249</ns14:address>
+                                                        <ns14:peerIPv4Id>2</ns14:peerIPv4Id>
+                                                </ns14:PeerIPv4>
+                                                
+                                                <ns15:IpsecTunnel>
+                                                        <ns15:ipsecTunnelId>1</ns15:ipsecTunnelId>
+                                                        <ns15:IpsecPolicy>
+                                                                <ns15:ipsecPolicyId>1</ns15:ipsecPolicyId>
+                                                                <ns15:localTrafficSelector struct="TrafficSelector">
+                                                                        <ns15:addressRange>10.112.64.0/25</ns15:addressRange>
+                                                                </ns15:localTrafficSelector>
+                                                                <ns15:remoteTrafficSelector struct="TrafficSelector">
+                                                                        <ns15:addressRange>10.200.73.0/24</ns15:addressRange>
+                                                                </ns15:remoteTrafficSelector>
+                                                        </ns15:IpsecPolicy>
+                                                </ns15:IpsecTunnel>
+                                                
+                                                
+                                                
+                                                
+                                                <ns15:IpsecTunnel>
+                                                        <ns15:ipsecTunnelId>2</ns15:ipsecTunnelId>
+                                                        <ns15:IpsecPolicy>
+                                                                <ns15:ipsecPolicyId>2</ns15:ipsecPolicyId>
+                                                                <ns15:localTrafficSelector struct="TrafficSelector">
+                                                                        <ns15:addressRange>10.112.56.0/25</ns15:addressRange>
+                                                                </ns15:localTrafficSelector>
+                                                                <ns15:remoteTrafficSelector struct="TrafficSelector">
+                                                                        <ns15:addressRange>10.203.5.0/24</ns15:addressRange>
+                                                                </ns15:remoteTrafficSelector>
+                                                        </ns15:IpsecPolicy>
+                                                </ns15:IpsecTunnel>
+                                        </ns13:Host>
+                                        <ns13:Host>
+                                        <ns13:hostId>1</ns13:hostId>
+                                        <ns13:DnsClient>
+                                                <ns13:serverAddress>10.200.73.7</ns13:serverAddress>
+                                                <ns13:dnsClientId>1</ns13:dnsClientId>
+                                        </ns13:DnsClient>
+                                        <ns13:InterfaceIPv4>
+                                                <ns13:interfaceIPv4Id>1</ns13:interfaceIPv4Id>
+                                                <ns13:AddressIPv4>
+                                                        <ns13:addressIPv4Id>1</ns13:addressIPv4Id>
+                                                        <ns13:address>10.112.64.200/25</ns13:address>
+                                                </ns13:AddressIPv4>
+                                        </ns13:InterfaceIPv4>
+                                        </ns13:Host>
+                                        <ns13:Host>
+                                        
+                                        <ns13:hostId>2</ns13:hostId>
+                                        <ns13:InterfaceIPv4>
+                                        <ns13:interfaceIPv4Id>2</ns13:interfaceIPv4Id>
+                                                <ns13:AddressIPv4>
+                                                        <ns13:addressIPv4Id>2</ns13:addressIPv4Id>
+                                                        <ns13:address>10.112.56.200/25</ns13:address>
+                                                </ns13:AddressIPv4>
+                                        </ns13:InterfaceIPv4>
+                                        </ns13:Host>
+                                        <ns16:Synchronization>
+                                                <ns16:synchronizationId>1</ns16:synchronizationId>
+                                                <ns16:syncServerNetwork>PRIVATE</ns16:syncServerNetwork>
+                                                <ns17:SyncServer>
+                                                        <ns17:administrativeState>UNLOCKED</ns17:administrativeState>
+                                                        <ns17:syncServerId>1</ns17:syncServerId>
+                                                        
+                                                        <ns17:bindInterfaceRef>ManagedElement=1,Transport=1,Host=2</ns17:bindInterfaceRef>
+                                                        <ns17:serverAddress>10.203.5.6</ns17:serverAddress>
+                                                        <ns17:protocol>NTP</ns17:protocol>
+                                                        
+                                                </ns17:SyncServer>
+                                                <ns17:SyncServer>
+                                                        <ns17:administrativeState>UNLOCKED</ns17:administrativeState>
+                                                        <ns17:syncServerId>2</ns17:syncServerId>
+                                                        <ns17:bindInterfaceRef>ManagedElement=1,Transport=1,Host=2</ns17:bindInterfaceRef>
+                                                        <ns17:serverAddress>10.203.5.44</ns17:serverAddress>
+                                                        <ns17:protocol>NTP</ns17:protocol>
+                                                        
+                                                </ns17:SyncServer>
+                                                
+                                                
+                                        </ns16:Synchronization>
+                                        <ns18:EthernetPort>
+                                                <ns18:ethernetPortId>1</ns18:ethernetPortId>
+                                                
+                                                <ns19:TrafficScheduler>
+                                                        <ns19:trafficSchedulerId>1</ns19:trafficSchedulerId>
+                                                        <ns19:trafficShapingProfile>PROFILE1</ns19:trafficShapingProfile>
+                                                </ns19:TrafficScheduler>
+                                        </ns18:EthernetPort>
+                                        
+                                        
+                                </ns2:Transport>
+
+
+
+                                <ns20:NodeBFunction>
+                                        <ns20:desensitizationPower>0</ns20:desensitizationPower>
+                                        <ns20:eulDchMaxAllowedSchRate>1600</ns20:eulDchMaxAllowedSchRate>
+                                        <ns20:eulMaxAllowedSchRate>3968</ns20:eulMaxAllowedSchRate>
+                                        <ns20:featureStatus64Qam>true</ns20:featureStatus64Qam>
+                                        <ns20:featureStatusDynamicCodeAllocation>true</ns20:featureStatusDynamicCodeAllocation>
+                                        <ns20:featureStatusEnhancedLayer2>false</ns20:featureStatusEnhancedLayer2>
+                                        <ns20:featureStatusEul2msTti>false</ns20:featureStatusEul2msTti>
+                                        <ns20:featureStatusFDpchSrbOnHsdpa>false</ns20:featureStatusFDpchSrbOnHsdpa>
+                                        <ns20:featureStatusHsAqmCongCtrl>true</ns20:featureStatusHsAqmCongCtrl> 
+                                        <ns20:hsPowerMargin>0</ns20:hsPowerMargin>
+                                        <ns20:nodeBFunctionId>1</ns20:nodeBFunctionId>
+                                        <ns20:orthLossComp>4</ns20:orthLossComp>
+                                        <ns20:Iub ns0:operation="merge">
+                                                <ns20:iubId>2682</ns20:iubId>
+                                                <ns20:rbsId>2682</ns20:rbsId>
+                                                
+                                                <ns20:trafficIpAddress>ManagedElement=1,Transport=1,Host=2,InterfaceIPv4=2,AddressIPv4=2</ns20:trafficIpAddress>
+                                                <ns20:IubDataStreams>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>ON</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>ON</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>ON</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>ON</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>ON</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:hsAqmCongCtrlSpiOnOff>OFF</ns20:hsAqmCongCtrlSpiOnOff>
+                                                        <ns20:iubDataStreamsId>1</ns20:iubDataStreamsId>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>ON</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>ON</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>ON</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>ON</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>ON</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                        <ns20:schHsFlowControlOnOff>OFF</ns20:schHsFlowControlOnOff>
+                                                </ns20:IubDataStreams>       
+                                        </ns20:Iub>
+                                        <ns20:NodeBLocalCellGroup>
+                                                <ns20:nodeBLocalCellGroupId>1</ns20:nodeBLocalCellGroupId>
+                                                <ns20:NodeBLocalCell ns0:operation="merge">
+                                                        <ns20:administrativeState>UNLOCKED</ns20:administrativeState>
+                                                        <ns20:eAgchMaxPower>-140</ns20:eAgchMaxPower>
+                                                        <ns20:eAgchMaxPower2msTti>-80</ns20:eAgchMaxPower2msTti>
+                                                        <ns20:eAgchMinPower>-140</ns20:eAgchMinPower>
+                                                        <ns20:eAgchMinPower2msTti>-80</ns20:eAgchMinPower2msTti>
+                                                        <ns20:eHichMaxPower>-140</ns20:eHichMaxPower>
+                                                        <ns20:eHichMaxPower2msTti>-80</ns20:eHichMaxPower2msTti>
+                                                        <ns20:eHichMinPower>-140</ns20:eHichMinPower>
+                                                        <ns20:eHichMinPower2msTti>-80</ns20:eHichMinPower2msTti>
+                                                        <ns20:eRgchMaxPower>-140</ns20:eRgchMaxPower>
+                                                        <ns20:eRgchMinPower>-140</ns20:eRgchMinPower>
+                                                        <ns20:eulMaxOwnUuLoad>100</ns20:eulMaxOwnUuLoad>
+                                                        <ns20:eulMaxRoTCoverage>200</ns20:eulMaxRoTCoverage>
+                                                        <ns20:eulOptimalNoiseFloorLock struct="EulOptimalNoiseFloorLockDataStruct">
+                                                                <ns20:eulNoiseFloorLock>false</ns20:eulNoiseFloorLock>
+                                                                <ns20:eulOptimalNoiseFloorEstimate>-1000</ns20:eulOptimalNoiseFloorEstimate>
+                                                        </ns20:eulOptimalNoiseFloorLock>
+                                                        <ns20:hsScchMaxCodePower>-20</ns20:hsScchMaxCodePower>
+                                                        <ns20:hsScchMinCodePower>-20</ns20:hsScchMinCodePower>
+                                                        <ns20:localCellId>26821</ns20:localCellId>
+                                                        <ns20:nodeBLocalCellId>UMPIC82A1</ns20:nodeBLocalCellId>
+                                                        <ns20:numOfTxAntennas>1</ns20:numOfTxAntennas>
+                                                        <ns20:numOfRxAntennas>2</ns20:numOfRxAntennas>
+                                                        <ns20:operatingBand>1</ns20:operatingBand>
+                                                        <ns20:uarfcnDl>10562</ns20:uarfcnDl>
+                                                        
+                                                        
+                                                </ns20:NodeBLocalCell>
+                                        </ns20:NodeBLocalCellGroup>  
+                                </ns20:NodeBFunction>
+                         
+                        </ns2:ManagedElement>
+                </ns0:config>
+        </ns0:edit-config>
+</ns0:rpc>

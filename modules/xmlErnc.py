@@ -10,4 +10,4 @@ def xmlErnc(data, name):
             value = re.findall(r"(?=(" + '|'.join("%" + data.columns + "%") + r"))", child.text)
             for val in value:
                 child.text = child.text.replace(val[0], str(data[val[0].replace("%", "")][0]))
-    tree.write("./excelFiles/"+name+"_new.xml", xml_declaration=True, encoding='utf-8')
+    tree.write('./output/'+data['SITE'][0]+"/"+data['SITE'][0]+'_'+data['RNC'][0]+'.xml', xml_declaration=True, encoding='utf-8')
