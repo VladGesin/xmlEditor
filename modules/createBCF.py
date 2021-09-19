@@ -1,10 +1,11 @@
 import xml.etree.ElementTree as ET
 import re
+import os
 
 
 def createBCF(data):
-
-    tree = ET.parse("./excelFiles/BCF_TEMPLATE.xml")
+    path = os.getcwd()
+    tree = ET.parse(path+"/excelFiles/BCF_TEMPLATE.xml")
     rootBatch = tree.find('Batch')
     rootBatch.set('batchName', data['SITE'][0] + "_IPSEC")
 
@@ -13,4 +14,4 @@ def createBCF(data):
         for val in value:
             neighbor.set('value', neighbor.attrib['value'].replace(val[0], str(data[val[0].replace("%", "")][0])))
 
-    tree.write('./output/'+data['SITE'][0]+"/"+data['SITE'][0]+'_BCF.xml', xml_declaration=True, encoding='utf-8')
+    tree.write(path+'/output/'+data['SITE'][0]+"/"+data['SITE'][0]+'_BCF.xml', xml_declaration=True, encoding='utf-8')
